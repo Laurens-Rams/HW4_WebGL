@@ -4,6 +4,7 @@ import {
   Scene,
   Color,
   Clock,
+  MathUtils
 } from 'three';
 import Stats from 'stats.js';
 import Tiles from './Sliders';
@@ -25,8 +26,8 @@ export default class App {
     // Camera
     const aspect = window.innerWidth / window.innerHeight;
 
-    this._camera = new PerspectiveCamera(50, aspect, 1, 1000);
-    this._camera.position.z = 40;
+    this._camera = new PerspectiveCamera(50, aspect, 100, 4000);
+    this._camera.position.z = 1000;
     this._resize();
 
     // Scene
@@ -68,9 +69,10 @@ export default class App {
   _resize() {
     this._gl.setSize(window.innerWidth, window.innerHeight);
       // // CHANGE FOV
-      // let fov = Math.atan(window.innerHeight / 2 / this._camera.position.z) * 2;
-      // fov = MathUtils.radToDeg(fov);
-      // this._camera.fov = fov;
+    let fov = Math.atan(window.innerHeight / 2 / this._camera.position.z) * 2;
+    fov = MathUtils.radToDeg(fov);
+    this._camera.fov = fov;
+    console.log(fov)
 
     const aspect = window.innerWidth / window.innerHeight;
     this._camera.aspect = aspect;

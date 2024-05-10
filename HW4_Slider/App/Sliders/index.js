@@ -21,8 +21,8 @@ export default class Tiles extends Group {
     super();
 
     this._isDragging = false;
-    this._width = 65;
-    this._radius = 150; 
+    this._width = 500;
+    this._radius = 990; 
     this._dragRadiusOffset = 20; 
     this._els = [];
     this._sphereCenter = new Vector3(0, 0, 0);
@@ -37,7 +37,7 @@ export default class Tiles extends Group {
   }
 
   _init() {
-    const planeGeometry = new PlaneGeometry(this._width, this._width);
+    const planeGeometry = new PlaneGeometry(1, 1);
     const planeMaterial = new ShaderMaterial({
       vertexShader: vertex,
       fragmentShader: fragment,
@@ -61,6 +61,7 @@ export default class Tiles extends Group {
       const z = radius * Math.cos(inclination);
 
       const planeMesh = new Mesh(planeGeometry, planeMaterial);
+      planeMesh.scale.set(this._width, this._width,1)
       planeMesh.position.set(x, y, z);
 
       planeMesh.userData.initialPosition = planeMesh.position.clone();
