@@ -21,9 +21,9 @@ export default class Tiles extends Group {
     super();
 
     this._isDragging = false;
-    this._width = 500;
-    this._radius = 990; 
-    this._dragRadiusOffset = 20; 
+    this._width = 700;
+    this._radius = 1400; 
+    this._dragRadiusOffset = 150; 
     this._els = [];
     this._sphereCenter = new Vector3(0, 0, 0);
     this._numTiles = 24;
@@ -54,7 +54,7 @@ export default class Tiles extends Group {
       const inclination = Math.acos(1 - 2 * t);
       const azimuth = angleIncrement * i;
 
-      let radius = this._radius + MathUtils.randFloat(-40, 40);
+      let radius = this._radius + MathUtils.randFloat(-500, 500);
 
       const x = radius * Math.sin(inclination) * Math.cos(azimuth);
       const y = radius * Math.sin(inclination) * Math.sin(azimuth);
