@@ -19,6 +19,7 @@ export default class App {
     // Render
     this._gl = new WebGLRenderer({
       canvas: document.querySelector('#canvas_main'),
+      antialias: true 
     });
 
     this._gl.setSize(window.innerWidth, window.innerHeight);
@@ -58,6 +59,11 @@ export default class App {
     this._scene.add(tiles);
   }
 
+  _setDPR() {
+    const dpr = Math.min(2, Math.max(window.devicePixelRatio, 1.4));
+    this._gl.setPixelRatio(dpr);
+  }
+
   onDrag(state) {
     this._tiles.onDrag(state);
   }
@@ -68,6 +74,7 @@ export default class App {
 
   _resize() {
     this._gl.setSize(window.innerWidth, window.innerHeight);
+    this._setDPR();
       // // CHANGE FOV
     let fov = Math.atan(window.innerHeight / 2 / this._camera.position.z) * 2;
     fov = MathUtils.radToDeg(fov);
